@@ -1,8 +1,11 @@
-import java.io.IOException;
-
+/**
+ * Kenny Do
+ * CECS 277
+ * 8/31/2016
+ */
 public class FractionTester {
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) {
 		Fraction f1 = new Fraction(1,2);
 		Fraction f2 = new Fraction(1,3);
 		Fraction f3 = f1.add(f2);
