@@ -1,7 +1,8 @@
 /**
- * Kenny Do
- * CECS 277
- * 8/31/2016
+ * @author Kenny Do
+ * @version 1.0
+ * @since 8/31/2016
+ * CECS 277 
  */
 import java.util.Scanner;
 
