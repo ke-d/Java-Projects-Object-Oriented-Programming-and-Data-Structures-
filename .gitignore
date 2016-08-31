@@ -57,3 +57,4 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+*.zip
