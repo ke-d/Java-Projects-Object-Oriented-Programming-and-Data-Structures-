@@ -30,42 +30,72 @@ public abstract class Employee {
 		birthDate.set(Calendar.YEAR, year);
 	}
 
+	/**
+	 * @return the lastName
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * @param lastName the lastName to set
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * @return the firstName
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * @param firstName the firstName to set
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * @return the iDNumber
+	 */
 	public String getIDNumber() {
 		return IDNumber;
 	}
 
+	/**
+	 * @param iDNumber the iDNumber to set
+	 */
 	public void setIDNumber(String iDNumber) {
 		IDNumber = iDNumber;
 	}
 
+	/**
+	 * @return the sex
+	 */
 	public char getSex() {
 		return sex;
 	}
 
+	/**
+	 * @param sex the sex to set
+	 */
 	public void setSex(char sex) {
 		this.sex = sex;
 	}
 
+	/**
+	 * @return the birthDate
+	 */
 	public Calendar getBirthDate() {
 		return birthDate;
 	}
 
+	/**
+	 * @param birthDate the birthDate to set
+	 */
 	public void setBirthDate(Calendar birthDate) {
 		this.birthDate = birthDate;
 	}

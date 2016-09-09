@@ -1,11 +1,11 @@
 
 public class Faculty extends Employee {
 	
-	private String level;
+	private FacultyLevel level;
 	private Education education;
 	
 	
-	public Faculty(String lName,String fName, String IDNum, char gender, int month, int day, int year, String level, String degree, String major, int research) {
+	public Faculty(String lName,String fName, String IDNum, char gender, int month, int day, int year, FacultyLevel level, String degree, String major, int research) {
 		super(lName, fName, IDNum, gender, day, month, year);
 		this.level = level;
 		education = new Education(degree, major, research);
@@ -15,7 +15,7 @@ public class Faculty extends Employee {
 	/**
 	 * @return the level
 	 */
-	public String getLevel() {
+	public FacultyLevel getLevel() {
 		return level;
 	}
 
@@ -23,7 +23,7 @@ public class Faculty extends Employee {
 	/**
 	 * @param level the level to set
 	 */
-	public void setLevel(String level) {
+	public void setLevel(FacultyLevel level) {
 		this.level = level;
 	}
 
@@ -56,7 +56,7 @@ public class Faculty extends Employee {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder string = new StringBuilder();
+		StringBuilder string = new StringBuilder().append(super.toString());
 		return string.toString();
 	}
 

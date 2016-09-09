@@ -10,7 +10,7 @@ public class Staff extends Employee {
 	}
 
 	public Staff(String lName, String fName, String IDNum, char gender, int day, int month, int year, double rate) {
-		super(lName, fName, IDNum, gender, day, month, year);
+//		super(lName, fName, IDNum, gender, day, month, year);
 		hourlyRate = rate;
 	}
 
