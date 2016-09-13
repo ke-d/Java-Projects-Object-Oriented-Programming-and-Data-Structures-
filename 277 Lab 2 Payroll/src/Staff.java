@@ -9,8 +9,8 @@ public class Staff extends Employee {
 		hourlyRate = 0;
 	}
 
-	public Staff(String lName, String fName, String IDNum, char gender, int day, int month, int year, double rate) {
-//		super(lName, fName, IDNum, gender, day, month, year);
+	public Staff(String lName, String fName, String IDNum, char gender, int month, int day, int year, double rate) {
+		super(lName, fName, IDNum, gender, month, day, year);
 		hourlyRate = rate;
 	}
 
@@ -28,9 +28,7 @@ public class Staff extends Employee {
 		this.hourlyRate = hourlyRate;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder(super.toString());

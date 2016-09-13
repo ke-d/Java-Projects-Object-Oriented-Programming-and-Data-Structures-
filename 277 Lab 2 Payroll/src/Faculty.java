@@ -4,9 +4,14 @@ public class Faculty extends Employee {
 	private FacultyLevel level;
 	private Education education;
 	
+	public Faculty() {
+		super();
+		level = null;
+		education = null;
+	}
 	
 	public Faculty(String lName,String fName, String IDNum, char gender, int month, int day, int year, FacultyLevel level, String degree, String major, int research) {
-		super(lName, fName, IDNum, gender, day, month, year);
+		super(lName, fName, IDNum, gender, month, day, year);
 		this.level = level;
 		education = new Education(degree, major, research);
 	}
@@ -46,17 +51,40 @@ public class Faculty extends Employee {
 
 	@Override
 	public double monthlyEarning() {
-		// TODO Auto-generated method stub
-		return 0;
+		double earnings = EmployeeInfo.FACULTY_MONTHLY_SALARY;
+		switch(level) {
+		case AO:
+			earnings *= 1.2;
+			break;
+		case FU:
+			earnings *= 1.4;
+			break;
+		default:
+			break;
+		}
+		return earnings;
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
-		StringBuilder string = new StringBuilder().append(super.toString());
+		StringBuilder string = new StringBuilder().append(super.toString() +  "\n");
+		switch(level) {
+		case AS:
+			string.append("Assistant Professor");
+			break;
+		case AO:
+			string.append("Associate Professor");
+			break;
+		case FU:
+			string.append("Full Professor");
+			break;
+		default:
+			string.append("NA");
+		}
+		string.append("\n");
+		string.append("Monthly Earnings: " + monthlyEarning());
 		return string.toString();
 	}
 
