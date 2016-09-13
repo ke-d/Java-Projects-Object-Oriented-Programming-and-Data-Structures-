@@ -1,6 +1,6 @@
 
 public enum FacultyLevel {
-	AU,	AO,	FU
+	AS,	AO,	FU
 	
 	
 }
