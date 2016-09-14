@@ -7,9 +7,8 @@ public class PartTime extends Staff {
 	 */
 	public PartTime() {
 		super();
+		hoursWorkedPerWeek = 0;
 	}
-
-	
 
 	/**
 	 * @param lName
@@ -56,7 +55,7 @@ public class PartTime extends Staff {
 	public String toString() {
 		StringBuilder string = new StringBuilder().append(super.toString() +  "\n");
 		//Deletes Full Time and an extra Monthly Salary from the Staff class
-		string.delete(78, string.length());
+		string.delete(string.indexOf("Full Time"), string.length());	
 		string.append("Hours Worked Per Month: " + getHoursWorkedPerWeek() * 4);
 		string.append("\nMonthly Salary: " + monthlyEarning());
 		return string.toString();
