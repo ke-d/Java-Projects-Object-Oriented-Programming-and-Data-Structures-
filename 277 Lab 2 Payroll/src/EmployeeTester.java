@@ -1,5 +1,9 @@
 import java.util.Arrays;
-
+/**
+ * 
+ * @author Kenny Do
+ *	CECS 277
+ */
 public class EmployeeTester {
 
 	public static void main(String[] args) {

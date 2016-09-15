@@ -3,15 +3,41 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
+/**
+ * 
+ * @author Kenny Do
+ *	CECS 277
+ */
 public abstract class Employee implements Comparable<Employee>, Cloneable {
+	
+	/**
+	 * Stores the last name
+	 */
 	private String lastName;
+	
+	/**
+	 * Stores the first name
+	 */
 	private String firstName;
+	
+	/**
+	 * Stores the ID Number
+	 */
 	private String IDNumber;
+	
+	/**
+	 * Stores the gender
+	 */
 	private char sex;
+	
+	/**
+	 * Stores the birthdate
+	 */
 	private Calendar birthDate;
 	
-
+	/**
+	 * Creates an empty employee
+	 */
 	public Employee() {
 		lastName = null;
 		firstName = null;
@@ -20,6 +46,16 @@ public abstract class Employee implements Comparable<Employee>, Cloneable {
 		birthDate = new GregorianCalendar();
 	}
 	
+	/**
+	 * Makes an Employee object
+	 * @param lName stored in lastName
+	 * @param fName stored in firstName
+	 * @param IDNum stored in IDNumber
+	 * @param gender stored in sex
+	 * @param month is used for the birth date
+	 * @param day is used for the birth date
+	 * @param year is used for the birth date
+	 */
 	public Employee(String lName,String fName, String IDNum, char gender, int month, int day, int year) {
 		lastName = lName;
 		firstName = fName;
@@ -94,7 +130,12 @@ public abstract class Employee implements Comparable<Employee>, Cloneable {
 		return birthDate;
 	}
 
-
+	/**
+	 * Sets the birthdate
+	 * @param month is used for the birth date
+	 * @param day is used for the birth date
+	 * @param year is used for the birth date
+	 */
 	public void setBirthDate(int month, int day, int year) {
 		birthDate = new GregorianCalendar();
 		birthDate.set(Calendar.MONTH, month);
@@ -102,25 +143,42 @@ public abstract class Employee implements Comparable<Employee>, Cloneable {
 		birthDate.set(Calendar.YEAR, year);
 	}
 
+	/**
+	 * Calculates the monthly earning using Polymorphism
+	 * @return the monthly earning
+	 */
 	public abstract double monthlyEarning();
 
 	@Override
+	/**
+	 * Clones the employee object
+	 */
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
 
 	@Override
+	/**
+	 * Compares the employee objects by descending ID numbers
+	 */
 	public int compareTo(Employee employee) {
 		int compareQuantity = Integer.parseInt(employee.getIDNumber().trim());
 		return compareQuantity - Integer.parseInt(IDNumber.trim());
 	}
 	
+	/**
+	 * Returns a comparator object
+	 * @return a Comparator Employee Object
+	 */
 	public static Comparator<Employee> EmployeeNameComparator() {
 		return new EmployeeComparator();
 	}
 	
 	
 	@Override
+	/**
+	 * Outputs the class information
+	 */
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("ID Employee Number: " + IDNumber + "\nEmployee Name: " + firstName + " " + lastName + "\nBirthdate: ");
@@ -130,8 +188,14 @@ public abstract class Employee implements Comparable<Employee>, Cloneable {
 		return string.toString();
 	}
 	
+	/**
+	 * Nested class that implements Comparator
+	 */
 	static class EmployeeComparator implements Comparator<Employee> {
-	@Override
+		@Override
+		/**
+		 * Compares the employee objects by last name
+		 */
 		public int compare(Employee employee1, Employee employee2) {
 			return employee1.getLastName().compareTo(employee2.getLastName());
 		}
