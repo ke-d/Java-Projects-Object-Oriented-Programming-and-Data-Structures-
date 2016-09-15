@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class EmployeeTester {
 
 	public static void main(String[] args) {
@@ -15,13 +17,13 @@ public class EmployeeTester {
 		
 		Employee[] CSULB = {Allen, Zapata, Rios, Johnson, Bouris, Andrade, Guzman, Depirro, Aldaco};
 		
-//		System.out.println(Guzman);
-		
+		System.out.println("Part A");
 		for(Employee e : CSULB) {
 			System.out.println(e);
 			System.out.println();
 		}
 		
+		System.out.println("Part B");
 		for(Employee e : CSULB) {
 			if(e instanceof PartTime) {
 				System.out.println(e.monthlyEarning());
@@ -29,11 +31,27 @@ public class EmployeeTester {
 		}
 		System.out.println();
 		
+		System.out.println("Part C");
 		for(Employee e : CSULB) {
 			System.out.println(e.monthlyEarning());
 		}
 		System.out.println();
 		
+		System.out.println("Part D");
+		Arrays.sort(CSULB);
+		for(Employee e : CSULB) {
+			System.out.println(e);
+			System.out.println();
+		}
+		System.out.println();
+		
+		System.out.println("Part E");
+		Arrays.sort(CSULB, Employee.EmployeeNameComparator());
+		
+		for(Employee e : CSULB) {
+			System.out.println(e);
+			System.out.println();
+		}
 	}
 
 }

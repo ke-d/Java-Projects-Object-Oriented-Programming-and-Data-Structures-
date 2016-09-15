@@ -1,9 +1,10 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public abstract class Employee {
+public abstract class Employee implements Comparable<Employee> {
 	private String lastName;
 	private String firstName;
 	private String IDNumber;
@@ -103,6 +104,17 @@ public abstract class Employee {
 	public abstract double monthlyEarning();
 
 	@Override
+	public int compareTo(Employee employee) {
+		int compareQuantity = Integer.parseInt(employee.getIDNumber().trim());
+		return compareQuantity - Integer.parseInt(IDNumber.trim());
+	}
+	
+	public static Comparator<Employee> EmployeeNameComparator() {
+		return new EmployeeComparator();
+	}
+	
+	
+	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder();
 		string.append("ID Employee Number: " + IDNumber + "\nEmployee Name: " + firstName + " " + lastName + "\nBirthdate: ");
@@ -110,5 +122,12 @@ public abstract class Employee {
 		Date date = birthDate.getTime();
 		string.append(format1.format(date));
 		return string.toString();
+	}
+	
+	static class EmployeeComparator implements Comparator<Employee> {
+	@Override
+		public int compare(Employee employee1, Employee employee2) {
+			return employee1.getLastName().compareTo(employee2.getLastName());
+		}
 	}
 }
