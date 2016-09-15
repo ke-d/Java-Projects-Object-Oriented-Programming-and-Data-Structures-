@@ -68,6 +68,13 @@ public class Faculty extends Employee {
 
 
 	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		Faculty clone = (Faculty) super.clone();
+		clone.setEducation((Education)education.clone());
+		return clone;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder().append(super.toString() +  "\n");
 		switch(level) {

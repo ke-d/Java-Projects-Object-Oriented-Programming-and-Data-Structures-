@@ -52,6 +52,25 @@ public class EmployeeTester {
 			System.out.println(e);
 			System.out.println();
 		}
+		
+		System.out.println("Part F");
+		Faculty clone = null;
+		try {
+			clone = (Faculty) CSULB[2].clone();
+		} catch (CloneNotSupportedException e1) {
+			System.out.println("Clone not supported");
+		}
+		clone.setEducation(new Education("Ph.D", "Computer Science", 10));
+		clone.setFirstName("Chris");
+		clone.setIDNumber("2452");
+		clone.setBirthDate(4, 14, 1970);
+		clone.setLevel(FacultyLevel.FU);
+		System.out.println("Clone: ");
+		System.out.println(clone);
+		System.out.println();
+		
+		System.out.println("Original: ");
+		System.out.println(CSULB[2]);
 	}
 
 }

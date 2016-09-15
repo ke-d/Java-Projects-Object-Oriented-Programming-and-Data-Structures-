@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public abstract class Employee implements Comparable<Employee> {
+public abstract class Employee implements Comparable<Employee>, Cloneable {
 	private String lastName;
 	private String firstName;
 	private String IDNumber;
@@ -94,14 +94,20 @@ public abstract class Employee implements Comparable<Employee> {
 		return birthDate;
 	}
 
-	/**
-	 * @param birthDate the birthDate to set
-	 */
-	public void setBirthDate(Calendar birthDate) {
-		this.birthDate = birthDate;
+
+	public void setBirthDate(int month, int day, int year) {
+		birthDate = new GregorianCalendar();
+		birthDate.set(Calendar.MONTH, month);
+		birthDate.set(Calendar.DAY_OF_MONTH, day);
+		birthDate.set(Calendar.YEAR, year);
 	}
 
 	public abstract double monthlyEarning();
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 
 	@Override
 	public int compareTo(Employee employee) {

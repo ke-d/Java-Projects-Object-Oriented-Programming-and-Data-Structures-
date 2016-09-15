@@ -1,5 +1,5 @@
 
-public class Education {
+public class Education implements Cloneable {
 	private String degree;
 	private String major;
 	private int research;
@@ -65,6 +65,12 @@ public class Education {
 	 */
 	public void setResearch(int research) {
 		this.research = research;
+	}
+
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 	
