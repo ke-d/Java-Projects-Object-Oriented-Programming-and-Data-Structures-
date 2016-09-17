@@ -68,7 +68,7 @@ public class PartTime extends Staff {
 		//Deletes Full Time and an extra Monthly Salary from the Staff class
 		string.delete(string.indexOf("Full Time"), string.length());	
 		string.append("Hours Worked Per Month: " + getHoursWorkedPerWeek() * 4);
-		string.append("\nMonthly Salary: " + monthlyEarning());
+		string.append("\nMonthly Earnings: $" + String.format("%.2f", monthlyEarning()));
 		return string.toString();
 	}
 }

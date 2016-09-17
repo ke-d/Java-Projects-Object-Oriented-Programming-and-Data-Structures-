@@ -30,14 +30,14 @@ public class EmployeeTester {
 		System.out.println("Part B");
 		for(Employee e : CSULB) {
 			if(e instanceof PartTime) {
-				System.out.println(e.monthlyEarning());
+				System.out.println("$" + String.format("%.2f", e.monthlyEarning()));
 			}
 		}
 		System.out.println();
 		
 		System.out.println("Part C");
 		for(Employee e : CSULB) {
-			System.out.println(e.monthlyEarning());
+			System.out.println("$" + String.format("%.2f", e.monthlyEarning()));
 		}
 		System.out.println();
 		

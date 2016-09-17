@@ -55,8 +55,8 @@ public class Staff extends Employee {
 	 */
 	public String toString() {
 		StringBuilder string = new StringBuilder(super.toString());
-		string.append("\nFull Time\nMonthly Salary: ");
-		string.append(monthlyEarning());
+		string.append("\nFull Time");
+		string.append("\nMonthly Earnings: $" + String.format("%.2f", monthlyEarning()));
 		return string.toString();
 	}
 

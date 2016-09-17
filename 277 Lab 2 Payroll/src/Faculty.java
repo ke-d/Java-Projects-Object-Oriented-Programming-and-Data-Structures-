@@ -128,7 +128,7 @@ public class Faculty extends Employee {
 			string.append("NA");
 		}
 		string.append("\n");
-		string.append("Monthly Earnings: " + monthlyEarning());
+		string.append("Monthly Earnings: $" + String.format("%.2f", monthlyEarning()));
 		return string.toString();
 	}
 
