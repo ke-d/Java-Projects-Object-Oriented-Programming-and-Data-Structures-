@@ -29,6 +29,10 @@ public abstract class Heap {
 		}
 	}
 	
+	public int peekRoot() {
+		return heap[1];
+	}
+	
 	private void growHeap() {
 		int[] newHeap = new int[heap.length*2];
 		for(int i = 1;i < heapSize; i++) {
