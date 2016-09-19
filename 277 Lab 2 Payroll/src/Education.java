@@ -96,6 +96,14 @@ public class Education implements Cloneable {
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
+
+	@Override
+	/**
+	 * Return the education class information
+	 */
+	public String toString() {
+		return "Education: degree = " + degree + ", major = " + major + ", research = " + research;
+	}
 	
 	
 }
