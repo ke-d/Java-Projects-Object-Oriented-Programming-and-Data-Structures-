@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.io.IOException;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.NoSuchElementException;
 
 /**
  * A bank contains account numbers and balances of each customer.
@@ -14,6 +12,9 @@ public class Bank {
 	/**
 	 * Construct a Bank object.
 	 */
+	public Bank() {
+		accountList = new ArrayList<>();
+	}
 
 	/**
 	 * Reads a file with account numbers and balances and adds the accounts to the bank.
@@ -40,7 +41,7 @@ public class Bank {
 	 * 
 	 * @param in the scanner for reading the input
 	 */
-	private void read(Scanner in) throws IOException, NoSuchElementException {
+	private void read(Scanner in) throws IOException {
 		while (in.hasNext()) {
 			// Create a BankAccount object
 			BankAccount acc = new BankAccount();
@@ -67,6 +68,12 @@ public class Bank {
 	 * @return the account with the highest balance
 	 */
 	public BankAccount getHighestBalance() {
-		return new BankAccount();
+		int indexHighest = 0;
+		for(int i = 0; i < accountList.size(); i++) {
+			if(accountList.get(i).getBalance() > accountList.get(indexHighest).getBalance()) {
+				indexHighest = i;
+			}
+		}
+		return accountList.get(indexHighest);
 	}
 }

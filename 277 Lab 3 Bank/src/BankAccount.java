@@ -31,14 +31,13 @@ public class BankAccount {
 	 * Reads an account number and balance.
 	 * @param in the scanner
 	 * @return true if the data was read false if the end of the stream was reached
-	 * @throws IOException 
 	 */
-	public void read(Scanner in) throws NoSuchElementException{
+	public void read(Scanner in) throws IOException {
 		try {
 			accountNumber = in.nextInt();
 			balance = in.nextDouble();
 		} catch (NoSuchElementException e) {
-			
+			throw new IOException();
 		}
 	}
 
