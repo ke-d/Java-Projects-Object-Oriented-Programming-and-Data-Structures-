@@ -6,7 +6,14 @@ import java.util.NoSuchElementException;
 	 * A bank account has a balance that can be changed by deposits and withdrawals.
 	 */
 public class BankAccount {
+	/**
+	 * Stores the balance
+	 */
 	private double balance;
+	
+	/**
+	 * Stores the account number
+	 */
 	private int accountNumber;
 
 	/**
