@@ -6,21 +6,21 @@ public class Faculty implements Comparable<Faculty> {
 	private String name;
 	
 	/**
-	 * The salary of the Faculty member
+	 * The id number of the Faculty member
 	 */
-	private double salary;
-	
+	private int idNum;
+
 	/**
-	 * Creates an Faculty object
-	 * @param name is the name of the Faculty
-	 * @param salary is the salary of the Faculty
+	 * Creates the Faculty class
+	 * @param name is the name of the person
+	 * @param idNum is the id of the person
 	 */
-	public Faculty(String name, double salary) {
+	public Faculty(String name, int idNum) {
 		this.name = name;
-		this.salary = salary;
+		this.idNum = idNum;
 	}
 
-	
+
 	/**
 	 * @return the name
 	 */
@@ -38,28 +38,28 @@ public class Faculty implements Comparable<Faculty> {
 
 
 	/**
-	 * @return the salary
+	 * @return the idNum
 	 */
-	public double getSalary() {
-		return salary;
+	public int getIdNum() {
+		return idNum;
 	}
 
 
 	/**
-	 * @param salary the salary to set
+	 * @param idNum the idNum to set
 	 */
-	public void setSalary(double salary) {
-		this.salary = salary;
+	public void setIdNum(int idNum) {
+		this.idNum = idNum;
 	}
 
 
 	@Override
 	/**
-	 * Compares the salary to another employee
+	 * Compares the id to another employee
 	 */
 	public int compareTo(Faculty o) {
-		Double sal1 = new Double(salary);
-		Double sal2 = new Double(o.getSalary());
+		Double sal1 = new Double(idNum);
+		Double sal2 = new Double(o.getIdNum());
 		return sal1.compareTo(sal2);
 	}
 	
@@ -69,7 +69,7 @@ public class Faculty implements Comparable<Faculty> {
 	 * Outputs the contents of this class
 	 */
 	public String toString() {
-		return "Faculty [name=" + name + ", salary=" + salary + "]";
+		return "Name = " + name + ", idNum = " + idNum;
 	}
 
 	
