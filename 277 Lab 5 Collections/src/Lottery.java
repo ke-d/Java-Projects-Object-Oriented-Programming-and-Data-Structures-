@@ -6,6 +6,10 @@ import java.util.TreeSet;
 
 public class Lottery {
 	
+	/**
+	 * Generates winning numbers
+	 * @return the generated winning numbers in a set
+	 */
 	public static Set<Integer> generateWinningNumbers() {
 		Set<Integer> lottery = new TreeSet<>();
 		Random r = new Random();
@@ -21,6 +25,10 @@ public class Lottery {
 		return lottery;
 	}
 	
+	/**
+	 * Gets 6 lotto numbers from a user
+	 * @return the 6 lotto numbers in a set
+	 */
 	public static Set<Integer> getTickets() {
 		System.out.println("Type 6 lotto numbers:");
 		Set<Integer> lottery = new TreeSet<>();
