@@ -9,6 +9,11 @@ public class LotteryTester {
 		System.out.println("Winning numbers: " + winning.toString());
 		winning.retainAll(ticket);
 		System.out.println("Match Numbers: " + winning.toString());
+		double winnings = 0;
+		for(int i = 0; i < winning.size(); i++) {
+			winnings += 250;
+		}
+		System.out.printf("You won $%.2f", winnings);
 	}
 
 }
