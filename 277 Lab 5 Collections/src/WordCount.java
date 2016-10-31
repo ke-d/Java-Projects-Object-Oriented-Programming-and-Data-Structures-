@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -29,6 +30,7 @@ public class WordCount {
 	/**
 	 * Creates a map from a file
 	 * @param map the map to be stored
+	 * @param input the Scanner
 	 */
 	private static void createMap(Map<String, Integer> map, Scanner input) {
 		String[] tokens = null;
@@ -57,11 +59,16 @@ public class WordCount {
 	private static void displayMap(Map<String, Integer> map) {
 		// Get key set
 		Set<String> s = map.keySet();
+		s.remove("");
 		// Make a tree set
 		Set<String> ts = new TreeSet<String> (new StringCompare());
 		ts.addAll(s);
-//		System.out.println(map.toString());
-		System.out.println(ts.toString());
+//		System.out.println(s.toString());
+		Iterator<String> iter = ts.iterator();
+		while(iter.hasNext()) {
+			String str = iter.next();
+			System.out.println(str + ": " + wordMap.get(str));
+		}
 	}
 	
 	/**
