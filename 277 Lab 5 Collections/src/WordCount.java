@@ -15,7 +15,14 @@ public class WordCount {
 	
 	
 	public static void main(String[] arg) {
-		createMap(wordMap);
+		File file = new File("data.txt");
+		Scanner input = null;
+		try {
+			input = new Scanner(file);	
+		} catch (FileNotFoundException e) {
+			System.err.println("Your file is not found");
+		}
+		createMap(wordMap, input);
 		displayMap(wordMap);
 	}
 	
@@ -23,16 +30,9 @@ public class WordCount {
 	 * Creates a map from a file
 	 * @param map the map to be stored
 	 */
-	private static void createMap(Map<String, Integer> map) {
-		// Read data from the file line by line
-		File file = new File("data.txt");
-		Scanner input = null;
+	private static void createMap(Map<String, Integer> map, Scanner input) {
 		String[] tokens = null;
-		try {
-			input = new Scanner(file);	
-		} catch (FileNotFoundException e) {
-			System.err.println("Your file is not found");
-		}
+		// Read data from the file line by line
 		while (input.hasNextLine()) {
 			String inputLine = input.nextLine();
 			tokens = inputLine.split(" ");
@@ -60,7 +60,7 @@ public class WordCount {
 		// Make a tree set
 		Set<String> ts = new TreeSet<String> (new StringCompare());
 		ts.addAll(s);
-		System.out.println(map.toString());
+//		System.out.println(map.toString());
 		System.out.println(ts.toString());
 	}
 	
@@ -78,6 +78,8 @@ public class WordCount {
 		public int compare(String arg0, String arg1) {
 			if(wordMap.get(arg0) > wordMap.get(arg1)) {
 				return -1;
+			} else if(wordMap.get(arg0) == wordMap.get(arg1)) {
+				return arg0.compareTo(arg1);
 			} else {
 				return 1;
 			}
