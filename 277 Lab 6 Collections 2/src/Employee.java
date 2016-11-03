@@ -1,13 +1,24 @@
 
 public class Employee implements Comparable <Employee>{
+	/**
+	 * ID of the employee
+	 */
 	private int id;
+	
+	/**
+	 * The last name of the employee
+	 */
 	private String lastName;
+	
+	/**
+	 * The first name of the employee
+	 */
 	private String firstName;
 
 	/**
-	 * @param id
-	 * @param lastName
-	 * @param firstName
+	 * @param id the id
+	 * @param lastName the last name
+	 * @param firstName the first name
 	 */
 	public Employee(int id, String lastName, String firstName) {
 		this.id = id;
@@ -53,6 +64,9 @@ public class Employee implements Comparable <Employee>{
 	}
 
 	@Override
+	/**
+	 * Compares to another employee
+	 */
 	public int compareTo(Employee arg0) {
 		if(lastName.equals(arg0.getLastName())) {
 			if(firstName.equals(arg0.getFirstName())) {
@@ -63,10 +77,11 @@ public class Employee implements Comparable <Employee>{
 		return lastName.compareTo(arg0.getLastName());
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
 	@Override
+	/**
+	 * Hash code for the employee class
+	 */
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -76,10 +91,11 @@ public class Employee implements Comparable <Employee>{
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+
 	@Override
+	/**
+	 * How an employee class is equal to another
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -103,10 +119,11 @@ public class Employee implements Comparable <Employee>{
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
+	/**
+	 * toString of the employee class
+	 */
 	public String toString() {
 		return "id = " + id + ", lastName = " + lastName + ", firstName = " + firstName;
 	}

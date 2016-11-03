@@ -3,14 +3,27 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class MapTester {
+	/**
+	 * Enum of the Menu items
+	 * @author Kenny Do
+	 *
+	 */
 	public enum Menu {
 		ADD, REMOVE, MODIFY, PRINT, EXIT;
 	}
 	
+	/**
+	 * Enum of the Performance evaluations
+	 * @author Kenny Do
+	 *
+	 */
 	public enum Performance {
 		EXCELLENT, GOOD, SATISFACTORY, IMPROVEMENT;
 	}
 	
+	/**
+	 * The scanner input for the user input
+	 */
 	static Scanner input;
 	public static void main(String[] args) {
 		input = new Scanner (System.in);
@@ -44,6 +57,11 @@ public class MapTester {
 
 	}
 	
+	/**
+	 * Add an employee to the employeeMap and performanceMap
+	 * @param employeeMap stores the ID as the key and the employee object
+	 * @param performanceMap stores the Employee and the Performance of that employee
+	 */
 	private static void addEmployee(Map<Integer, Employee> employeeMap, Map<Employee, Performance> performanceMap) {
 		int id;
 		String lastName;
@@ -67,7 +85,11 @@ public class MapTester {
 		}
 	}
 
-
+	/**
+	 * Remove an employee from the employeeMap and performanceMap
+	 * @param employeeMap the map to remove from
+	 * @param performanceMap the map to remove from
+	 */
 	private static void removeEmployee(Map<Integer, Employee> employeeMap, Map<Employee, Performance> performanceMap) {
 		System.out.println("Enter an ID to remove:");
 		int id = input.nextInt();
@@ -82,6 +104,11 @@ public class MapTester {
 		
 	}
 	
+	/**
+	 * Modify an employee from the employeeMap and performanceMap
+	 * @param employeeMap the map to modify from
+	 * @param performanceMap the map to modify from
+	 */
 	private static void modifyEmployee(Map<Integer, Employee> employeeMap, Map<Employee, Performance> performanceMap) {
 		System.out.println("Enter an ID to modify:");
 		int id = input.nextInt();
@@ -96,12 +123,20 @@ public class MapTester {
 		}
 	}
 
+	/**
+	 * Display all the employees and their respective performance
+	 * @param performanceMap the map to display from
+	 */
 	private static void printEmployee(Map<Employee, Performance> performanceMap) {
 		for(Map.Entry<Employee, Performance> entry : performanceMap.entrySet()) {
 			System.out.println(entry.getKey() + " Performance = " + entry.getValue());
 		}
 	}
-
+	
+	/**
+	 * Prints the menu from the Menu enum and gets the choice from the user
+	 * @return the int corresponding the the Menu
+	 */
 	public static int printMenuAndGetChoice() {
 		Menu items[] = Menu.values();
 		for(int i = 0; i < items.length; i++) {
@@ -111,6 +146,10 @@ public class MapTester {
 		return in;
 	}
 
+	/**
+	 * Prints the performance from the Performance enum and gets the input from the user
+	 * @return the corresponding Performance enum based on use input
+	 */
 	private static Performance getPerformanceFromUser() {
 		System.out.println("Enter a performance:");
 		Performance items[] = Performance.values();
