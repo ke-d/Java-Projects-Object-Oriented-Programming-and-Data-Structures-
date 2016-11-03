@@ -51,15 +51,20 @@ public class MapTester {
 		
 		System.out.println("Enter ID:");
 		id = input.nextInt();
-		System.out.println("Enter First Name:");
-		firstName = input.next();
-		System.out.println("Enter Last Name:");
-		lastName = input.next();
-		
-		Employee em = new Employee(id, lastName, firstName);
-		employeeMap.put(id, em);
-		Performance perf = getPerformanceFromUser();
-		performanceMap.put(em, perf);
+
+		if (!employeeMap.containsKey(id)) {
+			System.out.println("Enter First Name:");
+			firstName = input.next();
+			System.out.println("Enter Last Name:");
+			lastName = input.next();
+			Employee em = new Employee(id, lastName, firstName);
+			employeeMap.put(id, em);
+			Performance perf = getPerformanceFromUser();
+			performanceMap.put(em, perf);
+			System.out.println("Employee Added");
+		} else {
+			System.out.println("ID already in map");
+		}
 	}
 
 
@@ -78,20 +83,23 @@ public class MapTester {
 	}
 	
 	private static void modifyEmployee(Map<Integer, Employee> employeeMap, Map<Employee, Performance> performanceMap) {
-		System.out.println("Enter an ID to remove:");
+		System.out.println("Enter an ID to modify:");
 		int id = input.nextInt();
 		if(employeeMap.containsKey(id)) {
+			System.out.println(id + " Found");
 			Employee modify = employeeMap.get(id);
 			Performance perfModify = getPerformanceFromUser();
 			performanceMap.put(modify, perfModify);
+			System.out.println("Performance changed");
 		} else {
 			System.out.println("Employee not in Map");
 		}
 	}
 
 	private static void printEmployee(Map<Employee, Performance> performanceMap) {
-		System.out.println(performanceMap.toString());
-		
+		for(Map.Entry<Employee, Performance> entry : performanceMap.entrySet()) {
+			System.out.println(entry.getKey() + " Performance = " + entry.getValue());
+		}
 	}
 
 	public static int printMenuAndGetChoice() {
