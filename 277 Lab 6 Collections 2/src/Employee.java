@@ -83,12 +83,10 @@ public class Employee implements Comparable <Employee>{
 	 * Hash code for the employee class
 	 */
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		return result;
+		final int HASH_MULTIPLIER = 29;
+		int h = HASH_MULTIPLIER * firstName.hashCode() + lastName.hashCode();
+		h = HASH_MULTIPLIER * h + ((Integer)id).hashCode();
+		return h;
 	}
 
 
@@ -97,26 +95,13 @@ public class Employee implements Comparable <Employee>{
 	 * How an employee class is equal to another
 	 */
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Employee other = (Employee) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id != other.id)
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		return true;
+		if(obj instanceof Employee) {
+			Employee emp = (Employee)obj;
+			if(firstName.equals(emp.getFirstName()) && lastName.equals(emp.getLastName()) && id == emp.getId()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 

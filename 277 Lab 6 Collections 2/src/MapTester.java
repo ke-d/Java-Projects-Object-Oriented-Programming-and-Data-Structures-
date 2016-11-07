@@ -54,7 +54,7 @@ public class MapTester {
 			System.out.println();
 			in = printMenuAndGetChoice();
 		}
-
+		input.close();
 	}
 	
 	/**
@@ -129,7 +129,7 @@ public class MapTester {
 	 */
 	private static void printEmployee(Map<Employee, Performance> performanceMap) {
 		for(Map.Entry<Employee, Performance> entry : performanceMap.entrySet()) {
-			System.out.println(entry.getKey() + " Performance = " + entry.getValue());
+			System.out.println(entry.getKey() + ", Performance = " + entry.getValue());
 		}
 	}
 	
