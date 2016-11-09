@@ -1,15 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class EightPuzzle implements Cloneable {
 	private ArrayList<Integer> puzzle;
-	private ArrayList<Boolean> visited;
+
 	public EightPuzzle() {
 		puzzle = new ArrayList<>();
-		visited = new ArrayList<>();
-		for(int i = 0; i < 9;i++) {
-			visited.add(false);
-		}
-		setVisited();
+
 	}
 	public EightPuzzle(ArrayList<Integer> puzzle) {
 		setPuzzle(puzzle);
@@ -22,13 +22,15 @@ public class EightPuzzle implements Cloneable {
 		return puzzle;
 	}
 	
-
-	/**
-	 * @param visited the visited to set
-	 */
-	private void setVisited(ArrayList<Boolean> visited) {
-		this.visited = visited;
+	public boolean checkUp() {
+		int indexZero = findEmpty();
+		int indexToSwap = indexZero - 3;
+		if(indexToSwap < 0) {
+			return false;
+		}
+		return true;
 	}
+
 	public boolean up() {
 		int indexZero = findEmpty();
 		int indexToSwap = indexZero - 3;
@@ -36,7 +38,15 @@ public class EightPuzzle implements Cloneable {
 			return false;
 		}
 		swap(indexZero, indexToSwap);	
-		setVisited();
+		return true;
+	}
+	
+	public boolean checkDown() {
+		int indexZero = findEmpty();
+		int indexToSwap = indexZero + 3;
+		if(indexToSwap >= puzzle.size()) {
+			return false;
+		}	
 		return true;
 	}
 	
@@ -47,7 +57,14 @@ public class EightPuzzle implements Cloneable {
 			return false;
 		}
 		swap(indexZero, indexToSwap);		
-		setVisited();
+		return true;
+	}
+	
+	public boolean checkLeft() {
+		int indexZero = findEmpty();
+		if(indexZero % 3 == 0) {
+			return false;
+		}
 		return true;
 	}
 	
@@ -58,7 +75,15 @@ public class EightPuzzle implements Cloneable {
 			return false;
 		}
 		swap(indexZero, indexToSwap);
-		setVisited();
+		return true;
+	}
+	
+	public boolean checkRight() {
+		int indexZero = findEmpty();
+		int indexToSwap = indexZero + 1;
+		if(indexToSwap % 3 == 0) {
+			return false;
+		}
 		return true;
 	}
 	
@@ -69,16 +94,36 @@ public class EightPuzzle implements Cloneable {
 			return false;
 		}
 		swap(indexZero, indexToSwap);	
-		setVisited();
 		return true;
 	}
 	
-	public boolean visitedAll() {
-		return !visited.contains(false);
-	}
-	
-	private void setVisited() {
-		visited.set(findEmpty(), true);
+	public List<EightPuzzle> getPossibleStates() throws CloneNotSupportedException {
+		List<EightPuzzle> states= new LinkedList<>();
+		ArrayList<Integer> random = new ArrayList<>(Arrays.asList(0,1,2,3));
+		Collections.shuffle(random);
+		for (int i = 0; i < random.size(); i++) {
+			if (checkUp() && random.get(i) == 0) {
+				EightPuzzle clone = (EightPuzzle) this.clone();
+				clone.up();
+				states.add(clone);
+			}
+			if (checkDown() && random.get(i) == 1) {
+				EightPuzzle clone = (EightPuzzle) this.clone();
+				clone.down();
+				states.add(clone);
+			}
+			if (checkRight() && random.get(i) == 2) {
+				EightPuzzle clone = (EightPuzzle) this.clone();
+				clone.right();
+				states.add(clone);
+			}
+			if (checkLeft() && random.get(i) == 3) {
+				EightPuzzle clone = (EightPuzzle) this.clone();
+				clone.left();
+				states.add(clone);
+			} 
+		}
+		return states;
 	}
 	
 	public void swap(int index1, int index2) {
@@ -92,11 +137,7 @@ public class EightPuzzle implements Cloneable {
 	 */
 	public void setPuzzle(ArrayList<Integer> puzzle2) {
 		this.puzzle = (ArrayList<Integer>) puzzle2.clone();
-		visited = new ArrayList<>();
-		for(int i = 0; i < 9;i++) {
-			visited.add(false);
-		}
-		setVisited();
+
 	}
 	
 	public int findEmpty() {
@@ -160,7 +201,6 @@ public class EightPuzzle implements Cloneable {
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		EightPuzzle clone = new EightPuzzle((ArrayList<Integer>) puzzle.clone());
-		clone.setVisited((ArrayList<Boolean>) visited.clone());
 		return clone;
 	}
 	
