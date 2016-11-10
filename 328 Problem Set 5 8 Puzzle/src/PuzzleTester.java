@@ -1,3 +1,4 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -5,6 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -35,7 +37,7 @@ public class PuzzleTester {
 	 */
 	private static void SolvePuzzle(EightPuzzle initial, EightPuzzle goal) throws CloneNotSupportedException {
 		//Stores the puzzle states not yet visited and potential future states
-		Stack<EightPuzzle> openSet = new Stack<>();
+		Queue<EightPuzzle> openSet = new ArrayDeque<>();
 		//Stores the puzzle states that already have been visited
 		Set<EightPuzzle> closedSet = new HashSet<>();
 		//Stores the parent state of the key (Makes it easier to trace back the steps)
@@ -48,7 +50,7 @@ public class PuzzleTester {
 		
 		while (!openSet.isEmpty()) {
 			//The state that we are looking at
-			EightPuzzle current = openSet.pop();
+			EightPuzzle current = openSet.remove();
 			
 			//Add the state to closedSet because we already visited it
 			closedSet.add(current);
@@ -81,7 +83,7 @@ public class PuzzleTester {
 					//If the possible state is not in either Set, then push the possible state to the openSet and 
 					//put it and its parent in the Map
 					if (!closedSet.contains(p) && !openSet.contains(p)) {
-						openSet.push(p);
+						openSet.offer(p);
 						parents.put(p, current);
 					}
 				}
