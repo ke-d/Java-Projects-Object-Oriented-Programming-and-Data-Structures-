@@ -65,7 +65,6 @@ public class PuzzleTester {
 					statesToReachGoal.offerFirst(parents.get(current));
 					current = (EightPuzzle) parents.get(current).clone();
 				}
-				statesToReachGoal.offerFirst(current);
 				
 				//Prints ALL the states to reach the goal state
 				int steps = 0;
