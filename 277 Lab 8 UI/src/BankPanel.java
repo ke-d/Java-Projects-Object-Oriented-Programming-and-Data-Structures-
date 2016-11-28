@@ -7,12 +7,40 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class BankPanel extends JPanel implements ActionListener {
+	/**
+	 * The Label for the amount
+	 */
 	private JLabel amountLabel;
+	
+	/**
+	 * The label for the balance
+	 */
 	private JLabel balanceLabel;
+	
+	/**
+	 * The text field for the amount that the user inputs
+	 */
 	private JTextField amount;
+	
+	/**
+	 * Button for deposit
+	 */
 	private JButton deposit;
+	
+	/**
+	 * Button for withdraw
+	 */
 	private JButton withdraw;
+	
+	/**
+	 * Stores the BankAccount
+	 */
 	private BankAccount acc;
+	
+	/**
+	 * Creates a BankAccount Panel
+	 * @param acc the BankAccount
+	 */
 	public BankPanel(BankAccount acc) {
 		this.acc = acc; 
 		
@@ -21,6 +49,7 @@ public class BankPanel extends JPanel implements ActionListener {
 		
 		withdraw = new JButton("Withdraw");
 		deposit = new JButton("Deposit");
+		
 		withdraw.addActionListener(this);
 		deposit.addActionListener(this);
 		
@@ -34,6 +63,9 @@ public class BankPanel extends JPanel implements ActionListener {
 		this.add(balanceLabel);
 	}
 
+	/**
+	 * Event handler for the buttons
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -45,7 +77,7 @@ public class BankPanel extends JPanel implements ActionListener {
 			}
 			balanceLabel.setText("balance=" + new Double(acc.getBalance()).toString());
 		} catch (NumberFormatException e1) {
-			balanceLabel.setText("balance=" + new Double(acc.getBalance()).toString() + " - You FOO");
+			balanceLabel.setText("balance=" + new Double(acc.getBalance()).toString() + " - Error");
 		}
 	}
 	
