@@ -9,9 +9,10 @@ public class BankAccountViewer {
 	public static void main(String[] args) {
 		BankAccount account = new BankAccount(INITIAL_BALANCE);
 
-		// construct the frame
-		JFrame frame = new BankAccountFrame(account);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		// construct the frames
+		JFrame frame1 = new BankAccountFrame(new BankPanelInPanel(account));
+		JFrame frame2 = new BankAccountFrame(new BankPanelSeperateClass(account));
+		JFrame frame3 = new BankAccountFrame(new BankPanelInnerClass(account));
+		JFrame frame4 = new BankAccountFrame(new BankPanelAnonymous(account));
 	}
 }

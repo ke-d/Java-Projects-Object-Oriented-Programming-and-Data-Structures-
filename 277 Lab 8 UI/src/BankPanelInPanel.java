@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -6,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class BankPanel extends JPanel implements ActionListener {
+public class BankPanelInPanel extends JPanel implements ActionListener {
 	/**
 	 * The Label for the amount
 	 */
@@ -41,9 +42,10 @@ public class BankPanel extends JPanel implements ActionListener {
 	 * Creates a BankAccount Panel
 	 * @param acc the BankAccount
 	 */
-	public BankPanel(BankAccount acc) {
+	public BankPanelInPanel(BankAccount acc) {
 		this.acc = acc; 
-		
+		this.setLayout(new BorderLayout());
+		JPanel row1 = new JPanel();
 		amountLabel = new JLabel("Amount:");
 		amount = new JTextField(20); 
 		
@@ -55,12 +57,14 @@ public class BankPanel extends JPanel implements ActionListener {
 		
 		balanceLabel = new JLabel("balance=" + new Double(acc.getBalance()).toString());
 		
-		this.add(amountLabel);
-		this.add(amount);
-		this.add(withdraw);
-		this.add(deposit);
-		
-		this.add(balanceLabel);
+		row1.add(amountLabel);
+		row1.add(amount);
+		row1.add(withdraw);
+		row1.add(deposit);
+		JPanel row2 = new JPanel();
+		row2.add(balanceLabel);
+		this.add(row1, BorderLayout.NORTH);
+		this.add(row2, BorderLayout.CENTER);
 	}
 
 	/**
