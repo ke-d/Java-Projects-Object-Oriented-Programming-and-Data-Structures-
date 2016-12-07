@@ -8,6 +8,7 @@ import javax.swing.border.*;
 import java.awt.*;
 
 public class gui extends JFrame {
+	//Enum of Colors
 	public enum NamedColor {
 		RED(Color.red),
 		BLUE(Color.blue),
@@ -27,7 +28,6 @@ public class gui extends JFrame {
 	    }
 	}
 
-	private NamedColor fontColor = NamedColor.BLACK;
 
 	// Declare check boxes
 	private JCheckBox jchkCentered, jchkBold, jchkItalic;
@@ -46,6 +46,9 @@ public class gui extends JFrame {
 	// Font style
 	private int fontStyle = Font.PLAIN;
 
+	//Font Color
+	private NamedColor fontColor = NamedColor.BLACK;
+	
 	// Font Size
 	private int fontSize = 12;
 
@@ -145,7 +148,9 @@ public class gui extends JFrame {
 				// Set font for the message
 				messagePanel.setFont(new Font(fontName, fontStyle, fontSize));
 			} else if(e.getSource() == jcboFontColor) {
+				
 				fontColor = NamedColor.values()[jcboFontColor.getSelectedIndex()];
+				//Set the color for the message
 				messagePanel.setForeground(fontColor.getAwtColor());
 
 				
