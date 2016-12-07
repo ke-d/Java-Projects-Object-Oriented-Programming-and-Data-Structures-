@@ -7,11 +7,30 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 
-public class gui extends JFrame {
+public class gui2 extends JFrame {
+	//Enum of Colors
+	public enum NamedColor {
+		BLACK(Color.BLACK),
+		RED(Color.red),
+		BLUE(Color.blue),
+	    YELLOW(Color.yellow),
+		GREEN(Color.green),
+		PINK(Color.pink),
+		ORANGE(Color.orange);
+	    private final Color awtColor;
+
+	    private NamedColor(Color awtColor) {
+	        this.awtColor = awtColor;
+	    }
+
+	    public Color getAwtColor() {
+	        return awtColor;
+	    }
+	}
+
 
 	// Declare check boxes
 	private JCheckBox jchkCentered, jchkBold, jchkItalic;
-	private JRadioButton jradioButtonRed, jradioButtonBlue;
 
 	// Declare a combo box to hold font names
 	private JComboBox jcboFontName = new JComboBox();
@@ -19,11 +38,16 @@ public class gui extends JFrame {
 	// Declare a combo box to hold font sizes
 	private JComboBox jcboFontSize = new JComboBox();
 	
+	private JComboBox jcboFontColor = new JComboBox();
+
 	// Font name
 	private String fontName = "SansSerif";
 
 	// Font style
 	private int fontStyle = Font.PLAIN;
+
+	//Font Color
+	private NamedColor fontColor = NamedColor.BLACK;
 	
 	// Font Size
 	private int fontSize = 12;
@@ -34,7 +58,7 @@ public class gui extends JFrame {
 
 	/** Main method */
 	public static void main(String[] args) {
-		JFrame frame = new gui();
+		JFrame frame = new gui2();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setLocationRelativeTo(null); // Center the frame
@@ -42,13 +66,13 @@ public class gui extends JFrame {
 	}
 
 	/** Default constructor */
-	public gui() {
+	public gui2() {
 		setTitle("Message Center");
 
 		// Set the background color of messagePanel
 		messagePanel.setBackground(Color.yellow);
 		// Set the background color of messagePanel
-		messagePanel.setForeground(Color.red);
+		messagePanel.setForeground(fontColor.getAwtColor());
 		// Find all available font names
 		GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		String[] fontnames = e.getAvailableFontFamilyNames();
@@ -60,6 +84,12 @@ public class gui extends JFrame {
 		for (int i = 1; i <= 100; i++)
 			jcboFontSize.addItem("" + i);
 		jcboFontSize.setSelectedItem("" + fontSize);
+
+		NamedColor colors[] = NamedColor.values();
+		for(int i = 0; i < colors.length; i++) {
+			jcboFontColor.addItem(" " + colors[i]);
+		}
+		jcboFontColor.setSelectedItem("" + fontColor);
 		
 		// Hold font name label and combo box
 		JPanel p1 = new JPanel(new BorderLayout(10, 10));
@@ -72,17 +102,15 @@ public class gui extends JFrame {
 		p2.add(jcboFontSize, BorderLayout.CENTER);
 		
 		
-		JPanel colorP = new JPanel();
-		ButtonGroup colorGroup = new ButtonGroup();
-		colorP.add(jradioButtonRed = new JRadioButton("Red", true));
-		colorP.add(jradioButtonBlue = new JRadioButton("Blue"));
-		colorGroup.add(jradioButtonRed);
-		colorGroup.add(jradioButtonBlue);
+		JPanel colorP = new JPanel(new BorderLayout(10, 10));
+		colorP.add(new JLabel("Font Color"), BorderLayout.WEST);
+		colorP.add(jcboFontColor, BorderLayout.CENTER);
 
 		// Add p1 and p2 into p3
 		JPanel p3 = new JPanel(new BorderLayout(10, 10));
 		p3.setBorder(new EmptyBorder(10, 10, 10, 10));
 		p3.add(p1, BorderLayout.WEST);
+		p3.add(colorP, BorderLayout.CENTER);
 		p3.add(p2, BorderLayout.EAST);
 
 		// Put three check boxes in panel p
@@ -90,11 +118,7 @@ public class gui extends JFrame {
 		p.add(jchkCentered = new JCheckBox("Centered"));
 		p.add(jchkBold = new JCheckBox("Bold"));
 		p.add(jchkItalic = new JCheckBox("Italic"));
-		
-		JPanel southPanel = new JPanel();
-		southPanel.add(colorP, BorderLayout.WEST);
-		southPanel.add(p, BorderLayout.EAST);
-		
+
 		// Set keyboard mnemonics
 		jchkCentered.setMnemonic('C');
 		jchkBold.setMnemonic('B');
@@ -104,18 +128,17 @@ public class gui extends JFrame {
 		setLayout(new BorderLayout());
 		add(messagePanel, BorderLayout.CENTER);
 		add(p3, BorderLayout.NORTH);
-		add(southPanel, BorderLayout.SOUTH);
+		add(p, BorderLayout.SOUTH);
 
 		// Register listeners on jcboFontName and jcboFontSize
 		jcboFontName.addItemListener(new Listener());
 		jcboFontSize.addItemListener(new Listener());
+		jcboFontColor.addItemListener(new Listener());
 
 		// Register listeners on jchkCentered, jchkBold, and jchkItalic
 		jchkCentered.addItemListener(new Listener());
 		jchkBold.addItemListener(new Listener());
 		jchkItalic.addItemListener(new Listener());
-		jradioButtonRed.addItemListener(new Listener());
-		jradioButtonBlue.addItemListener(new Listener());
 	}
 
 	class Listener implements ItemListener {
@@ -126,11 +149,12 @@ public class gui extends JFrame {
 	
 				// Set font for the message
 				messagePanel.setFont(new Font(fontName, fontStyle, fontSize));
-			} else if(e.getSource() == jradioButtonRed) {
-				messagePanel.setForeground(Color.red);
+			} else if(e.getSource() == jcboFontColor) {
 				
-			} else if(e.getSource() == jradioButtonBlue) {
-				messagePanel.setForeground(Color.blue);
+				fontColor = NamedColor.values()[jcboFontColor.getSelectedIndex()];
+				//Set the color for the message
+				messagePanel.setForeground(fontColor.getAwtColor());
+
 				
 			} else if (e.getSource() == jcboFontSize) {
 				fontSize = Integer.parseInt((String) (jcboFontSize.getSelectedItem()));
